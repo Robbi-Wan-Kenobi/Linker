@@ -1,0 +1,45 @@
+﻿<ContentDialog
+    x:Class="Linker.Views.NewNameAndTypeDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:channels="using:Linker.Channels"
+    mc:Ignorable="d"
+    Title="TITLE"
+    PrimaryButtonText="OK"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick" >
+
+    <Grid MinWidth="400">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock  Grid.Row="0" Text="Name" FontSize="20" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ItemName, Mode=TwoWay}" FontSize="20" Margin="5"  />
+
+        <TextBlock Grid.Row="1" Text="Type" FontSize="20" VerticalAlignment="Center"/>
+
+        <ComboBox  
+            Grid.Column="1" Grid.Row="1"             
+            ItemsSource="{Binding TypeNames}"
+            SelectedItem="{Binding SelectedType, Mode=TwoWay}" 
+            HorizontalAlignment="Stretch" Margin="5" Height="39" SelectionChanged="ComboBox_SelectionChanged" FontSize="20">
+            <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="channels:Channel">
+                    <TextBlock Text="{Binding}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        
+
+    </Grid>
+</ContentDialog>

@@ -1,0 +1,42 @@
+﻿<UserControl
+    x:Class="Linker.Views.NumbericChangeAnime"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="30"
+    d:DesignWidth="60" Name="BaseControl">
+    <UserControl.Resources>
+        <Storyboard x:Name="StryBrd_Up" >
+            <DoubleAnimation x:Name="TranslationUpOldValue" Storyboard.TargetName="TranslationOldValue"  Storyboard.TargetProperty="Y" From="0" />
+            <DoubleAnimation x:Name="TranslationUpNewValue" Storyboard.TargetName="TranslationNewValue" Storyboard.TargetProperty="Y"  To="0"  />
+            <DoubleAnimation x:Name="OpacityUpOldValue"     Storyboard.TargetName="oldValue" Storyboard.TargetProperty="(FrameworkElement.Opacity)" From="1" To="0"  />
+            <DoubleAnimation x:Name="OpacityUpNewValue"     Storyboard.TargetName="newValue" Storyboard.TargetProperty="(FrameworkElement.Opacity)" From="0" To="1"  />
+        </Storyboard>
+        <Storyboard x:Name="StryBrd_Down">
+            <DoubleAnimation x:Name="TranslationDownOldValue" Storyboard.TargetName="TranslationOldValue" Storyboard.TargetProperty="Y" From="0"  />
+            <DoubleAnimation x:Name="TranslationDownNewValue" Storyboard.TargetName="TranslationNewValue" Storyboard.TargetProperty="Y" To="0"  />
+            <DoubleAnimation x:Name="OpacityDownOldValue"     Storyboard.TargetName="oldValue" Storyboard.TargetProperty="(FrameworkElement.Opacity)" From="1" To="0"  />
+            <DoubleAnimation x:Name="OpacityDownNewValue"     Storyboard.TargetName="newValue" Storyboard.TargetProperty="(FrameworkElement.Opacity)" From="0" To="1"  />
+        </Storyboard>
+    </UserControl.Resources> 
+    <Grid >
+        <TextBlock 
+            Name="oldValue"    
+            HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0" >
+            <TextBlock.RenderTransform>
+                <TranslateTransform x:Name="TranslationOldValue"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        
+        <TextBlock 
+            Name="newValue"           
+            VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <TextBlock.RenderTransform>
+                <TranslateTransform x:Name="TranslationNewValue"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,49 @@
+﻿<Page
+    x:Class="Linker.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Linker"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <NavigationView 
+                x:Name="MainNavigationMenu" 
+                IsBackButtonVisible="Collapsed"
+                PaneDisplayMode="Top"
+                ItemInvoked="HamburgerMenu_ItemInvoked"  >
+            <NavigationView.MenuItems>
+
+                <NavigationViewItem Content="MainPage" Tag="Linker.Views.FrontPage" Name="PageToOpen" IsSelected="True">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph=""/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem Content="Trends" Tag="Linker.Views.DatabaseTrendView" Visibility="Collapsed">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph=""/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem Content="Z wave options" Tag="Linker.Views.ZWOptions"  >
+                    <NavigationViewItem.Icon>
+                        <BitmapIcon UriSource="/Assets/StoreLogo.png" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem  Tag="Linker.Views.ZWOptions" SelectsOnInvoked="False" >
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBlock Text="Data log" Margin="2,0" VerticalAlignment="Center"/>
+                        <ToggleSwitch IsOn="{Binding MeasureTriggersRunning, Mode=TwoWay}"/>
+                    </StackPanel>
+                </NavigationViewItem>
+                
+
+            </NavigationView.MenuItems>
+            <Frame x:Name="frame"/>
+        </NavigationView>
+    </Grid>
+</Page>

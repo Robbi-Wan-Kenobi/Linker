@@ -1,0 +1,23 @@
+﻿<Page
+    x:Class="Linker.Views.DatabaseTrendView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:myControls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:lvc="using:LiveCharts.Uwp"
+    xmlns:views="using:Linker.Views"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <views:ZoomingModeCoverter x:Key="ZoomingModeCoverter"></views:ZoomingModeCoverter>
+    </Page.Resources>
+
+    <Grid>        
+        <lvc:CartesianChart  />
+        <CommandBar Margin="20" DefaultLabelPosition="Right"  HorizontalAlignment="Right" >
+            <AppBarButton Icon="Refresh" Label="Reset view"  Click="ResetZoomOnClick" />
+            <AppBarButton Icon="ZoomIn"  Label="{Binding ZoomingMode, FallbackValue=Zoom mode, Converter={StaticResource ZoomingModeCoverter}}" Click="TogleZoomingMode" />
+        </CommandBar>
+    </Grid>
+</Page>

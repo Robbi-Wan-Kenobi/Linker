@@ -1,0 +1,59 @@
+﻿<ContentDialog
+    x:Class="Linker.ViewDialogs.NewNodeDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Linker.ViewDialogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:linker="using:Linker"
+    mc:Ignorable="d"
+    Title="New Node"
+    PrimaryButtonText="Ok"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_OkButtonClick"
+    SecondaryButtonClick="ContentDialog_CancelButtonClick">
+    <ContentDialog.Resources>
+        <linker:BoolTrueToVisibileConverter x:Key="BoolTrueToVisibileConverter"/>
+    </ContentDialog.Resources>
+       
+    <StackPanel>
+        <TextBox Text="{Binding MeaureNode.Name, Mode=TwoWay}" Header="Name"/>
+        <TextBox Text="{Binding MeaureNode.Unit, Mode=TwoWay}" Header="Unit"/>
+        <!--<MenuFlyoutSeparator  />-->
+
+        <ComboBox 
+            Name="ComboBoxTriggerValue"
+            SelectionChanged="ComboBoxTriggerValue_SelectionChanged"
+            Header="Trigger value" MinWidth="271"
+            Visibility="{x:Bind ListSelectionPartVisible, Mode=OneWay}"
+            ItemsSource="{x:Bind TriggerValueListItems, Mode=OneTime}"
+            SelectedItem="{Binding TriggerValueSelectedItem, Mode=TwoWay}"/>
+        
+        
+        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+            <ToggleSwitch 
+                Width="208" 
+                Name="MultiplierActiveSwitch" Header="Multiply Zwave value" OffContent="" OnContent=""/>
+            <ComboBox 
+                Name="ComboBoxMultiplier" 
+                VerticalAlignment="Bottom" Margin="-140,0,0,2" 
+                Width="100" IsEditable="True"    
+                Text="{x:Bind Multiplier, Mode=TwoWay}"
+                PlaceholderText="{Binding Multiplier, Mode=OneTime}"
+                ItemsSource="{x:Bind MultiplierList, Mode=OneTime}"         
+                Visibility="{Binding ElementName=MultiplierActiveSwitch, Path=IsOn, Converter={StaticResource BoolTrueToVisibileConverter}}"
+                TextSubmitted="MultiplierComboBox_TextSubmitted"/>
+            <TextBlock 
+                Text="Input a numeric value" TextWrapping="Wrap" 
+                Width="90" Height="35"
+                Foreground="Red" Margin="-32,0,0,0" VerticalAlignment="Bottom" HorizontalTextAlignment="Center"
+                Visibility="{x:Bind MultiplierComboBoxErrorVisible,Mode=OneWay}" />
+        </StackPanel>
+
+        
+
+
+
+
+    </StackPanel>
+</ContentDialog>

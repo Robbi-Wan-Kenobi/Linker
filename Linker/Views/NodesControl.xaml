@@ -1,0 +1,57 @@
+﻿<UserControl
+    x:Class="Linker.Views.NodesControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Linker.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:nodes="using:Linker.Nodes"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <GridView  ItemsSource="{Binding NodeCollection}" IsMultiSelectCheckBoxEnabled="True" >
+        <GridView.ItemContainerStyle>
+            <Style TargetType="GridViewItem">
+                <Setter Property="Margin" Value="18"/>
+                <Setter Property="MaxWidth" Value="120"/>
+            </Style>
+        </GridView.ItemContainerStyle>
+        <!--<TextBox Name="master" Text="255" InputScope="Number"  />
+        <local:NumbericChangeAnime Value="{Binding ElementName=master, Path=Text}"   />-->
+
+        <GridView.ItemTemplate>
+            <DataTemplate x:DataType="nodes:MeasureNode">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid HorizontalAlignment="Center" Margin="-5,0,0,0">
+                        <Ellipse Height="35" Width="35"  StrokeThickness="5" VerticalAlignment="Top" HorizontalAlignment="Left" Stroke="{ThemeResource SystemControlBackgroundBaseLowRevealBorderBrush}" >
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="/Assets/Tests/fibaro/fgbs222.png" Opacity="0.9" />
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Button Height="80" Width="80" BorderThickness="6" CornerRadius="40" Style="{StaticResource ButtonRevealStyle}" Margin="10,10,0,0" >
+                            <local:NumbericChangeAnime NumbericValue="{Binding Value}" FontSize="20"  />
+                        </Button>
+                    </Grid>
+                    <TextBlock Grid.Row="1" 
+                Text="{Binding Name}" 
+                FontSize="12" 
+                TextWrapping="Wrap" 
+                Style="{ThemeResource CaptionTextBlockStyle}" 
+                HorizontalTextAlignment="Center"     />
+                </Grid>
+            </DataTemplate>
+        </GridView.ItemTemplate>
+
+
+
+       
+
+
+    </GridView>
+</UserControl>

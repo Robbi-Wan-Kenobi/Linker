@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="Linker.Views.DatabaseDataView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:myControls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" >
+            <ToggleButton Content="Auto update values" Click="AutoUpdateSwitch_Click" IsChecked="True"/>
+            <AppBarSeparator/>
+            <Button Content="Get Latest values" Click="GetLatestValues_Click" Margin="5" />
+            <TextBox x:Name="amountInputField" Text="10" BeforeTextChanging="TextBox_BeforeTextChanging"  Margin="5" />
+        </StackPanel>
+        <NavigationViewItemSeparator Grid.Row="1"/>
+
+        <myControls:DataGrid 
+            Grid.Row="2"            
+            ItemsSource="{Binding TableRows}"
+            AutoGenerateColumns="False" 
+            IsReadOnly="True" 
+             />
+    </Grid>
+</Page>
